@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="text-3xl font-bold underline">Agregar Noticia</h1>
+    <form class="max-w-sm mx-auto" action="/noticias" method="POST">
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium" for="title">Titulo</label>
+            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="title" name="noticia[title]">
+        </div>
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium" for="location">Locacion</label>
+            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="location" name="noticia[location]">
+        </div>
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium" for="content">Contenido</label>
+            <input class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="content" name="noticia[content]">
+        </div>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <button>Agregar Noticia</button></span>
+        
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><a href="/noticias">Todas las noticias</a></span>
+    </form>
+    
+
