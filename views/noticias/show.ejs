@@ -1,20 +1,20 @@
 <% layout('layouts/boilerplate') %>
 
-<h1 class="text-3xl font-bold underline">Noticia</h1>
-    <div class="max-w-sm mx-auto rounded overflow-hidden shadow-lg">
-        <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2"><%= noticia.title %></div>
-          <p class="text-gray-700 text-base">
-            <%= noticia.content %>
-          </p>
-        </div>
-        <div class="px-6 pt-4 pb-2">
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><form action="/noticias/<%=noticia._id%>?_method=DELETE" method="POST">
-            <button>Borrar</button>
-        </form></span>
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <a href="/noticias/<%= noticia._id %>/edit">Editar noticia</a></span>
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <a href="/noticias">Volver a las noticias</a></span>
-        </div>
+
+
+<div class="max-w-screen-sm mx-auto my-20 bg-white   rounded-lg ">
+
+      <img class="rounded-t-lg" src="<%= noticia.image %>" alt="" />
+
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"><%= noticia.title %></h5>
+      <p class="mb-3 font-normal overflow-wrap: break-word max-w-full"><%= noticia.content %> </p>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= noticia.location %></p>
+      <div class="px-6 pt-4 pb-2">
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><form action="/noticias/<%=noticia._id%>?_method=DELETE" method="POST">
+          <button>Borrar</button>
+      </form></span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <a href="/noticias/<%= noticia._id %>/edit">Editar noticia</a></span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <a href="/noticias">Volver a las noticias</a></span>
       </div>
 
-      
+</div>
