@@ -1,5 +1,11 @@
 <nav class="bg-[#FFE3A7] dark:bg-[#FFE3A7]">
+    
     <div class="max-w-screen-xl px-4 py-3 mx-auto flex justify-end">  <ul class="flex mt-0 space-x-3">
+        <% if(currentUser) {%>
+            <li>
+                <a href="/logout" class="block py-5 px-5 text-white bg-red-600 hover:text-black hover:bg-green-500 rounded md:border-0  md:px-2 md:py-0">Exit</a>
+            </li>
+            <% } %>
         <li>
           <img class="w-5 h-5 md:w-6 md:h-6"  src="https://ipvtuc.gob.ar/web/wp-content/uploads/2024/01/face-1.png" alt="">
         </li>
@@ -45,6 +51,7 @@
         <li>
             <a href="#" class="block py-2 px-3 text-gray-900 hover:text-[#FFB81A] rounded md:border-0  md:p-0 ">Contacto</a>
         </li>
+       
         </ul>
     </div>
     </div>

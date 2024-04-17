@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate') %>
+
+<h1 class="text-3xl ml-80 mt-24 my-10 font-bold underline">Registrarse</h1>
+
+<form class="max-w-lg mx-auto mb-96 mt-24 validated-form group" action="/register" method="POST" novalidate>
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium" for="username">Nombre/s y apellido/s</label>
+            <input class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="username" name="username" required>
+            <span class="mt-2 text-sm peer-[&:not(:placeholder-shown):not(:focus)]:block">
+                <span class="valid-feedback text-green-500 hidden">¡Nombre válido!</span>
+                <span class="invalid-feedback text-red-500 hidden">Por favor ingrese un Nombre</span>
+            </span>
+            
+        </div>
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium" for="email">E-mail</label>
+            <input  class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="email" id="email" name="email" required  onkeyup="validateEmail(this)">
+            <span class="mt-2 text-sm peer-[&:not(:placeholder-shown):not(:focus)]:block">
+                <span class="valid-feedback text-green-500 hidden">¡E-mail válido!</span>
+                <span class="invalid-feedback text-red-500 hidden">Por favor ingrese un E-mail</span>
+            </span>
+        </div>
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium" for="password">Contraseña</label>
+            <input class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="password" id="image" name="password" required >
+            <span class="mt-2 text-sm peer-[&:not(:placeholder-shown):not(:focus)]:block">
+                <span class="valid-feedback text-green-500 hidden">¡Contraseña válida!</span>
+                <span class="invalid-feedback text-red-500 hidden">Por favor ingrese una contraseña</span>
+            </span>
+        </div>
+       
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <button type="submit" class="group-invalid:pointer-events-none group-invalid:opacity-30">Registrarse</button></span>
+    </form>
+
+    
+<script>
+    function validateEmail(input) {
+      const email = input.value;
+      const hasAt = email.includes('@');
+      const hasDot = email.includes('.');
+    
+      if (!hasAt || !hasDot) {
+        input.classList.add('invalid'); // Add class for styling
+        input.nextElementSibling.children[1].classList.remove('hidden'); // Show error message
+        input.nextElementSibling.children[0].classList.add('hidden'); // Hide success message
+      } else {
+        input.classList.remove('invalid'); // Remove class for styling
+        input.nextElementSibling.children[0].classList.remove('hidden'); // Show success message
+        input.nextElementSibling.children[1].classList.add('hidden'); // Hide error message
+      }
+    }
+    </script>
