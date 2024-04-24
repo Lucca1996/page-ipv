@@ -1,4 +1,8 @@
 const Noticia = require('../models/noticia');
+const { cloudinary } = require("../cloudinary");
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 module.exports.index = async (req, res) => {
     const noticias = await Noticia.find({})
@@ -10,8 +14,12 @@ module.exports.renderNewForm = (req, res) => {
 }
 
 module.exports.createNoticia = async (req, res, next) => {
-    // if (!req.body.noticia) throw new ExpressError('Noticia invalida o incompleta', 400)
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.noticia.location,
+        limit: 1
+    }).send()
     const noticia = new Noticia(req.body.noticia);
+    noticia.geometry = geoData.body.features[0].geometry;
     noticia.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     noticia.author = req.user._id
     await noticia.save();
@@ -51,7 +59,23 @@ module.exports.editForm = async (req, res) => {
 
 module.exports.editNoticia = async (req, res) => {
     const { id } = req.params;
+    const geoData = await geocoder
+        .forwardGeocode({
+            query: req.body.noticia.location,
+            limit: 1,
+        })
+        .send();
     const noticia = await Noticia.findByIdAndUpdate(id, { ...req.body.noticia });
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }))
+    noticia.images.push(...imgs);
+    noticia.geometry = geoData.body.features[0].geometry;
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await noticia.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+    }
+    await noticia.save()
     req.flash('success', 'Noticia editada correctamente!')
     res.redirect(`/noticias/${noticia._id}`)
 }

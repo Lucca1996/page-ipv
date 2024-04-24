@@ -16,6 +16,8 @@ const app = express();
 const noticiasRoutes = require('./routes/noticias')
 const userRoutes = require('./routes/users')
 const session = require('express-session')
+const mongoSanitize = require('express-mongo-sanitize')
+const helmet = require('helmet')
 
 app.listen(3000, () => {
     console.log('listening to port 3000')
@@ -37,13 +39,17 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(mongoSanitize())
+app.use(helmet({ contentSecurityPolicy: false }))
 
 const sessionConfig = {
+    name: 'session',
     secret: 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -59,7 +65,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    console.log(req.session)
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -68,11 +73,20 @@ app.use((req, res, next) => {
 
 
 
-app.use('/', userRoutes)
+app.use('/conf', userRoutes)
 app.use('/noticias', noticiasRoutes)
 
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('home/index')
+})
+app.get('/contacto', (req, res) => {
+    res.render('contacto/index')
+})
+app.get('/institucional', (req, res) => {
+    res.render('institucional/index')
+})
+app.get('/tramites', (req, res) => {
+    res.render('tramites/index')
 })
 
 

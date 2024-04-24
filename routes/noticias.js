@@ -16,7 +16,7 @@ router.get('/new', isLoggedIn, noticias.renderNewForm)
 
 router.route('/:id')
     .get(catchAsync(noticias.showNoticia))
-    .put(isLoggedIn, isAuthor, validateNoticia, catchAsync(noticias.editNoticia))
+    .put(isLoggedIn, isAuthor, upload.array('image'), validateNoticia, catchAsync(noticias.editNoticia))
     .delete(isLoggedIn, isAuthor, catchAsync(noticias.deleteNoticia))
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(noticias.editForm))

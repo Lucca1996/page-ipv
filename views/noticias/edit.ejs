@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <h1 class="text-3xl ml-80 my-10 font-bold underline">Editar Noticia</h1>
-    <form class="max-w-lg mx-auto validated-form group" action="/noticias/<%= noticia._id %>?_method=PUT" method="POST" novalidate>
+    <form class="max-w-lg mx-auto validated-form group" action="/noticias/<%= noticia._id %>?_method=PUT" method="POST" novalidate enctype="multipart/form-data">
         <div class="mb-5">
             <label class="block mb-2 text-sm font-medium" for="title">Titulo</label>
             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="title" name="noticia[title]" value="<%= noticia.title %>" required>
@@ -17,22 +17,61 @@
                 <span class="invalid-feedback text-red-500 hidden">Por favor ingrese una locacion</span>
             </span>
         </div>
-        <div class="mb-5">
-            <label class="block mb-2 text-sm font-medium" for="image">URL Imagen</label>
-            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="image" name="noticia[image]" value="<%= noticia.image %>" required>
-            <span class="mt-2 text-sm peer-[&:not(:placeholder-shown):not(:focus)]:block">
-                <span class="valid-feedback text-green-500 hidden">¡Imagen válida!</span>
-                <span class="invalid-feedback text-red-500 hidden">Por favor ingrese una imagen</span>
-            </span>
+        <div class="max-w-sm mb-5">
+            <label class="block mb-2 text-sm font-medium" for="image">Agregar Imagenes</label>
+            <label class="block">
+                <input type="file" class="block w-full text-sm text-gray-500
+                    file:me-4 file:py-2 file:px-4
+                    file:rounded-lg file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-gray-700 file:text-white
+                    hover:file:bg-gray-600
+                    file:disabled:opacity-50 file:disabled:pointer-events-none
+                    dark:text-neutral-500
+                    dark:file:bg-gray-700
+                    dark:hover:file:bg-gray-600
+                " id="image" name="image"  multiple >
+            </label>
         </div>
-        <div class="mb-5">
+        <div class="max-w-sm mb-5">
+            <label class="block mb-2 text-sm font-medium" for="category">Editar categoria</label>
+            <select id="category" name="noticia[category]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected value="<%= noticia.category %>"><%= noticia.category %></option>
+                <option value="Institucionales">Institucionales</option>
+                <option value="Entregas">Entregas</option>
+                <option value="Actos Publicos">Actos Publicos</option>
+            </select>
+        </div>
+        <div class="mb-8">
             <label class="block mb-2 text-sm font-medium" for="content">Contenido</label>
             <textarea cols="30" rows="15" class="block w-full p-2  text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="textarea" id="content" name="noticia[content]" required><%= noticia.content %></textarea>
             <span class="mt-2 text-sm peer-[&:not(:placeholder-shown):not(:focus)]:block">
                 <span class="valid-feedback text-green-500 hidden">¡Contenido válido!</span>
                 <span class="invalid-feedback text-red-500 hidden">Por favor ingrese un contenido</span>
-            </span>
+            </span> 
         </div>
+        <label class="block mb-5 text-sm font-medium">Eliminar imagen/es</label>
+        <div  class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+<% noticia.images.forEach(function(img, i) {%>
+    <label class="relative cursor-pointer hover:scale-110 transition-transform duration-500 ease-in-out">
+        <input type="checkbox" class="peer hidden" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+        <span class="absolute top-2 right-2 z-10 opacity-0 transition-all peer-checked:opacity-100">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-red-700 stroke-white" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M9 12l2 2l4 -4" />
+          </svg>
+        </span>
+        <div class="overflow-hidden rounded-lg bg-white shadow-md ring ring-transparent grayscale transition-all active:scale-95 peer-checked:ring-red-700 peer-checked:grayscale-0">
+          <div>
+            <img src="<%= img.thumbnail %>" alt="" class="h-28 w-48 object-cover" />
+          </div>
+        </div>
+      </label>
+    
+<% }) %>
+        </div>
+
         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><button type="submit" class="group-invalid:pointer-events-none group-invalid:opacity-30">Editar Noticia</button></span>
         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><a href="/noticias/<%= noticia._id %>">Volver a la noticia</a></span>
         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><a href="/noticias/<%= noticia._id %>">Vista Previa</a></span>

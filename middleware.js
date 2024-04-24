@@ -23,7 +23,7 @@ module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
     const noticia = await Noticia.findById(id);
     if (!noticia.author.equals(req.user._id)) {
-        req.flash('error', 'You do not have permission to do that!');
+        req.flash('error', 'Usted no esta autorizado para realizar esa accion');
         return res.redirect(`/noticias/${id}`);
     }
     next();

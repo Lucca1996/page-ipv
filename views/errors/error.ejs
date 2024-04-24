@@ -9,7 +9,9 @@
     <div>
       <span class="font-medium"><%= err.message %></span>
         <ul class="mt-1.5 list-disc list-inside">
+        <%  if (process.env.NODE_ENV !== "production") { %>
           <li><%= err.stack %></li>
+        <% } %>
       </ul>
     </div>
   </div>
