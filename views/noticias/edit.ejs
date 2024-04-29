@@ -9,6 +9,14 @@
                 <span class="invalid-feedback text-red-500 hidden">Por favor ingrese un titulo</span>
             </span>
         </div>
+        <div class="mb-8">
+            <label class="block mb-2 text-sm font-medium" for="subtitle">Sub-titulo</label>
+            <textarea cols="15" rows="6" class="block w-full p-2  text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="textarea" id="subtitle" name="noticia[subtitle]" required><%= noticia.subtitle %></textarea>
+            <span class="mt-2 text-sm peer-[&:not(:placeholder-shown):not(:focus)]:block">
+                <span class="valid-feedback text-green-500 hidden">¡Sub-titulo válido!</span>
+                <span class="invalid-feedback text-red-500 hidden">Por favor ingrese un Sub-titulo</span>
+            </span> 
+        </div>
         <div class="mb-5">
             <label class="block mb-2 text-sm font-medium" for="location">Locacion</label>
             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="location" name="noticia[location]" value="<%= noticia.location %>" required>
@@ -17,6 +25,7 @@
                 <span class="invalid-feedback text-red-500 hidden">Por favor ingrese una locacion</span>
             </span>
         </div>
+        
         <div class="max-w-sm mb-5">
             <label class="block mb-2 text-sm font-medium" for="image">Agregar Imagenes</label>
             <label class="block">

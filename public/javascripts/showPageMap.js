@@ -3,7 +3,7 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v12',
     center: noticia.geometry.coordinates,
-    zoom: 10,
+    zoom: 12,
 });
 
 map.addControl(new mapboxgl.NavigationControl())

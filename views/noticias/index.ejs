@@ -1,33 +1,64 @@
 <% layout('layouts/boilerplate') %>
+<% const entregas = noticias.filter(noticia => noticia.category === "Entregas");%>
+<% const institucionales = noticias.filter(noticia => noticia.category === "Institucionales");%>
+<% const Actos = noticias.filter(noticia => noticia.category === "Actos Publicos");%>
+
     <img class="w-full mx-auto" src="https://ipvtuc.gob.ar/web/wp-content/uploads/2024/02/pagina-WEB-noticias.png" alt="">
-    <div class="max-w-screen-xl flex-wrap items-end justify-between mx-auto mt-20 mb-20 p-4">
-        <h1 class="font-extrabold text-5xl mb-10" >Categorías</h1>
+<div class="max-w-screen-xl flex-wrap items-end justify-between mx-auto mt-20 mb-20 p-4">
+    <h1 class="font-extrabold text-5xl mb-20" >Categorías</h1>
     <% if(currentUser) {%>
         <div>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            <a href="/noticias/new">Agregar Noticia</a>
-        </span>
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <a href="/noticias/new">Agregar Noticia</a>
+            </span>
         </div>
-    <% } %>
-    <% for(let noticia of noticias) { %>
-
-        <div class=" shadow-md  overflow-hidden mb-3">
-        <div class="flex flex-row-reverse">
-            <div class="max-w-sm h-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <img class="rounded-t-lg " src="<%= noticia.images[0].url %>" alt="" />
+        <% } %>
+        <div class="flex">
+            <div>
+                <div class="flex mb-0">
+            <img src="https://res.cloudinary.com/dncvxpgj1/image/upload/v1714050217/IPV/nzce7ilwvxwc5u1mcmu0.png" class="h-7 mr-2" alt="">
+            <h3 class="text-lg w-64 mb-5" >Información de interes</h3>
             </div>
-            <div class="w-1/2 p-4">
-            <h5 class="text-xl  font-black mb-2"><%= noticia.title %></h5>
-            <p class="text-gray-700 mb-4">
-                <%= noticia.content.split(' ').slice(0, 15).join(' ') %><% if (noticia.content.split(' ').length > 15) { %>...<% } %></p>
-            <p class="text-sm text-gray-500"><%= noticia.location %></p>
-            <a href="/noticias/<%= noticia._id %>" class="inline-flex font-black items-center px-3 py-2 mt-8 bg-[#FFB81A]  hover:bg-[#ff891a]">
-            Visitar Noticia
-            </a>
+            <h4 class="font-extrabold mb-5">Entregas</h4>
+            <ul class="mb-5">
+            <% for(let noticia of entregas) { %>
+                <a href="/noticias/<%= noticia._id %>" class="mr-2 mb-2"><%= noticia.title %></a><br>
+                <% } %>
+            </ul>
+            <h4 class="font-extrabold mb-5">Institucionales</h4>
+            <ul class="mb-5">
+                <% for(let noticia of institucionales) { %>
+                    <a href="/noticias/<%= noticia._id %>" class="mr-2 mb-2"><%= noticia.title %></a><br>
+                    <% } %>
+                </ul>
+                <h4 class="font-extrabold mb-5">Actos Públicos</h4>
+                <ul>
+                    <% for(let noticia of Actos) { %>
+                        <a href="/noticias/<%= noticia._id %>" class="mr-2 mb-2"><%= noticia.title %></a><br>
+                        <% } %>
+                    </ul>
+            </div>
+            <div>
+                <% for(let noticia of noticias) { %>
+                    <div class="  overflow-hidden mb-3">
+                        <div class="flex flex-row-reverse">
+                            <div class="max-w-sm h-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <img class="rounded-t-lg " src="<%= noticia.images[0].url %>" alt="" />
+                            </div>
+                        <div class="w-1/2 p-4">
+                            <h5 class="text-xl  font-black mb-2"><%= noticia.title %></h5>
+                            <p class="text-gray-700 mb-4">
+                            <%= noticia.content.split(' ').slice(0, 15).join(' ') %><% if (noticia.content.split(' ').length > 15) { %>...<% } %></p>
+                            <p class="text-sm text-gray-500"><%= noticia.location %></p>
+                            <a href="/noticias/<%= noticia._id %>" class="inline-flex font-black items-center px-3 py-2 mt-8 bg-[#FFB81A]  hover:bg-[#ff891a]">
+                            Visitar Noticia
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                <% } %>
             </div>
         </div>
-        </div>
-    <% } %>
-    </div>
+</div>
 
 

@@ -27,6 +27,7 @@ const NoticiaSchema = new Schema({
         }
     },
     content: String,
+    subtitle: String,
     category: String,
     date: String,
     location: String,
