@@ -20,7 +20,8 @@ module.exports.createNoticia = async (req, res, next) => {
     }).send()
     const noticia = new Noticia(req.body.noticia);
     noticia.geometry = geoData.body.features[0].geometry;
-    noticia.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    noticia.coverimage = req.files.coverimage.map(f => ({ url: f.path, filename: f.filename }));
+    noticia.images = req.files.image.map(f => ({ url: f.path, filename: f.filename }));
     noticia.author = req.user._id
     await noticia.save();
     req.flash('success', 'Noticia creada correctamente!')

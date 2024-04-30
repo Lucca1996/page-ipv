@@ -17,7 +17,7 @@
 <div class="max-w-screen-xl flex-wrap items-end justify-between mx-auto mt-32 mb-20 p-4">
   <h5 class="mb-10 text-5xl font-bold tracking-tight text-gray-900"><%= noticia.title %></h5>
   <div class="max-w-full max-h-dvh flex bg-gray-300">
-    <img class=" w-2/3" src="<%= noticia.images[0].url %>" alt="" />
+    <img class=" w-2/3" src="<%= noticia.coverimage[0].url %>" alt="" />
     <div>
     <h2 class="ml-12 mt-5 mb-44 font-semibold">Noticia principal</h2>
     <div class="flex">
@@ -52,13 +52,74 @@
 </div>
 <div  class="grid grid-cols-5 mb-10">
   <% noticia.images.forEach(function(img, i) {%>
-            <div>
-              <img src="<%= img.thumbnail %>" alt="" class="h-96 w-96 object-cover cursor-pointer hover:scale-110 transition-transform duration-500 ease-in-out" />
+            <div class="image">
+              <img src="<%= img.url %>" alt="" class="h-96 w-96 object-cover cursor-pointer hover:scale-110 transition-transform duration-500 ease-in-out" />
             </div>
   <% }) %>
           </div>
+          
 </section>
+<style>
+  .container .popup-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: black;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: none;
+  }
+  .container .popup-image span {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 40px;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    z-index: 100;
+  }
 
+  .container .popup-image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid white;
+    border-radius: 5px;
+    width: 750px;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .container .popup-image img {
+      width: 95%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="popup-image">
+    <span>&times;</span>
+    <img src="" alt="" />
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll(".image img").forEach(image => {
+    image.onclick = () => {
+      document.querySelector(".popup-image").style.display = "block";
+      document.querySelector(".popup-image img").src =
+        image.getAttribute("src");
+    };
+  });
+
+  document.querySelector(".popup-image span").onclick = () => {
+    document.querySelector(".popup-image").style.display = "none";
+  };
+</script>
 
   <style>
     body { margin: 0; padding: 0; }
@@ -68,9 +129,6 @@
       height: 200px; /* Ajusta la altura según sea necesario */
     }
   </style>
-    
-  
-  <script src="/javascripts/carrouselShow.js"></script>
 
       <% if(currentUser && noticia.author.equals(currentUser._id)) {%>
       <div class="px-6 pt-4 pb-2">

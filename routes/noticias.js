@@ -10,7 +10,7 @@ const upload = multer({ storage });
 
 router.route('/')
     .get(catchAsync(noticias.index))
-    .post(isLoggedIn, upload.array('image'), validateNoticia, catchAsync(noticias.createNoticia))
+    .post(isLoggedIn, upload.fields([{ name: 'coverimage', maxCount: 1 }, { name: 'image', maxCount: 30 }]), validateNoticia, catchAsync(noticias.createNoticia))
 
 router.get('/new', isLoggedIn, noticias.renderNewForm)
 
