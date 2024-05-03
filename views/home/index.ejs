@@ -33,30 +33,67 @@
     </div>
 </a>
 </div>
-<% for(let noticia of noticias) { %>
-<div class="max-w-screen-xl flex-wrap items-end justify-between mx-auto mt-32 mb-28 p-4">
-    <h5 class="mb-10 text-5xl font-bold tracking-tight text-gray-900">Noticias</h5>
-    <div class="max-w-full max-h-dvh flex bg-gray-300">
-      <img class=" w-2/3" src="<%= noticia.coverimage[0].url %>" alt="" />
-      <div class="w-80">
-        <h2 class="ml-12 mt-5  font-semibold">Noticia principal</h2>
-        <h2 class="ml-12 mt-5 mb-28 font-light"><%= noticia.date.toLocaleDateString() %></h2>
-      <div class="flex">
-        <img class="w-5 h-5 md:w-6 md:h-6 ml-12" src="https://res.cloudinary.com/dncvxpgj1/image/upload/w_200/v1714390010/IPV/ayblnmi0v8xb8dfidajz.png" alt="">
-       
-        <img class="w-5 h-5 md:w-6 md:h-6 ml-2" src="https://res.cloudinary.com/dncvxpgj1/image/upload/w_200/v1714390010/IPV/cudtnnibjvxzi1nppoed.png" alt="">
-       
+
+<h5 class=" text-5xl font-bold tracking-tight mt-32 text-gray-900">Noticias</h5>
+<div id="carousel" class="relative">
+  <% noticias.slice(0, 4).reverse().forEach((noticia, index) => { %>
+    <div class="flex-wrap items-end  justify-between mx-auto mt-20 mb-28 px-12 <%= index !== 0 ? 'hidden' : '' %>">
+      <div class=" flex bg-gray-300">
+        <img class=" w-2/3" src="<%= noticia.coverimage[0].url %>" alt="" />
+        <div class="w-80">
+          <h2 class="ml-12 mt-5  font-semibold">Noticia principal</h2>
+          <h2 class="ml-12 mt-5 mb-24 font-light"><%= noticia.date.toLocaleDateString() %></h2>
+          <div class="flex">
+            <img class="w-5 h-5 md:w-6 md:h-6 ml-12" src="https://res.cloudinary.com/dncvxpgj1/image/upload/w_200/v1714390010/IPV/ayblnmi0v8xb8dfidajz.png" alt="">
+            
+            <img class="w-5 h-5 md:w-6 md:h-6 ml-2" src="https://res.cloudinary.com/dncvxpgj1/image/upload/w_200/v1714390010/IPV/cudtnnibjvxzi1nppoed.png" alt="">
+            
+          </div>
+          <h2 class="ml-12 mt-5 mb-5 text-2xl font-bold"><%= noticia.title %></h2>
+          <p class="ml-12 text-xl whitespace-pre-wrap "><%= noticia.subtitle %></p>
+          <a href="/noticias/<%= noticia._id %>" class="inline-flex font-black text-xl mt-8 items-center px-24 whitespace-nowrap py-5 mb-5 ml-12 bg-[#FFB81A]  hover:bg-[#ff891a]">
+            Visitar Noticia
+          </a>
+        </div>
       </div>
-      <h2 class="ml-12 mt-5 mb-5 text-2xl font-bold"><%= noticia.title %></h2>
-      <p class="ml-12 text-xl whitespace-pre-wrap"><%= noticia.subtitle %></p>
-      <a href="#" class="inline-flex font-black text-xl items-center px-24 whitespace-nowrap py-5 mb-5 ml-12 bg-[#FFB81A]  hover:bg-[#ff891a]">
-        Visitar Noticia
-        </a>
     </div>
-    </div>
-  </div>
-  <%}  %>
+    <%});  %>
   
+    <button id="prev" type="button" class="absolute top-0  flex items-center justify-center h-full cursor-pointer group focus:outline-none" data-carousel-prev>
+      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full  bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+          <svg class="w-8 h-8 dark:text-gray-800 hover:text-[#FFB81A] rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+          </svg>
+          <span class="sr-only ">Previous</span>
+      </span>
+  </button>
+  <button id="next" type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full  cursor-pointer group focus:outline-none" data-carousel-next>
+      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+          <svg class="w-8 h-8 dark:text-gray-800 hover:text-[#FFB81A] rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+          </svg>
+          <span class="sr-only">Next</span>
+      </span>
+  </button>
+</div>
+
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('#carousel > div');
+
+  document.getElementById('prev').addEventListener('click', () => {
+    slides[currentSlide].classList.add('hidden');
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    slides[currentSlide].classList.remove('hidden');
+  });
+
+  document.getElementById('next').addEventListener('click', () => {
+    slides[currentSlide].classList.add('hidden');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.remove('hidden');
+  });
+</script>
   <h5 class="mb-10 text-5xl font-bold tracking-tight text-gray-900">Programas Especiales</h5>
 
 </div>
