@@ -18,6 +18,7 @@ const userRoutes = require('./routes/users')
 const session = require('express-session')
 const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
+const Noticia = require('./models/noticia');
 
 app.listen(3000, () => {
     console.log('listening to port 3000')
@@ -76,14 +77,21 @@ app.use((req, res, next) => {
 app.use('/conf', userRoutes)
 app.use('/noticias', noticiasRoutes)
 
-app.get('/', (req, res) => {
-    res.render('home/index')
+app.get('/', async (req, res) => {
+    const noticias = await Noticia.find({})
+    res.render('home/index', { noticias })
 })
 app.get('/contacto', (req, res) => {
     res.render('contacto/index')
 })
-app.get('/institucional', (req, res) => {
-    res.render('institucional/index')
+app.get('/institucional/mision', (req, res) => {
+    res.render('institucional/mision')
+})
+app.get('/institucional/autoridades', (req, res) => {
+    res.render('institucional/autoridades')
+})
+app.get('/institucional/organigrama', (req, res) => {
+    res.render('institucional/organigrama')
 })
 app.get('/tramites', (req, res) => {
     res.render('tramites/index')

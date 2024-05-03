@@ -20,9 +20,9 @@
 </nav>
 <nav class="bg-white border-gray-200">
     <div class="max-w-screen-xl flex flex-wrap items-end justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img class="w-21 h-16" src="https://ipvtuc.gob.ar/web/wp-content/uploads/2024/01/logo-IPV.png" class="h-8" alt="Flowbite Logo" />
-        <img class="w-21 h-16" src="https://ipvtuc.gob.ar/web/wp-content/uploads/2024/01/logo-GOB.png" class="h-8" alt="Flowbite Logo" />
+    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img class="w-21 h-16" src="https://ipvtuc.gob.ar/web/wp-content/uploads/2024/01/logo-IPV.png" class="h-8" alt="ipv Logo" />
+        <img class="w-21 h-16" src="https://ipvtuc.gob.ar/web/wp-content/uploads/2024/01/logo-GOB.png" class="h-8" alt="ipv Logo" />
     
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
@@ -37,20 +37,81 @@
             <a href="/" class="block py-2 px-3 rounded md:bg-transparent md:text-[#FFB81A] md:p-0 dark:text-white md:dark:text-[#FFB81A]" aria-current="page">Inicio</a>
         </li>
         <li>
-            <a href="/institucional" class="block py-2 px-3 text-gray-900 hover:text-[#FFB81A] rounded md:border-0  md:p-0 ">Institucional</a>
+            <div class="group relative cursor-pointer">
+
+                <div class="flex items-center">
+                    <a class="menu-hover " onClick="">
+                        Institucional
+                    </a>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="h-3 w-3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </span>
+                </div>
+        
+                <div
+                    class="invisible absolute z-50 rounded-sm flex w-full flex-col bg-white py-2  text-gray-800 shadow-xl group-hover:visible">
+        
+                    <a href="/institucional/mision" class="ml-1 block border-b border-gray-100  font-semibold  hover:text-[#FFB81A] ">
+                        Mision
+                    </a>
+        
+                    <a href="/institucional/autoridades" class="ml-1 block border-b border-gray-100 font-semibold  hover:text-[#FFB81A] ">
+                        Autoridades
+                    </a>
+        
+                    <a href="/institucional/organigrama" class="ml-1 block border-b border-gray-100  font-semibold  hover:text-[#FFB81A]">
+                        Organigrama
+                    </a>
+        
+                </div>
+            </div>
         </li>
         <li>
             <a href="/noticias" class="block py-2 px-3 text-gray-900 hover:text-[#FFB81A] rounded md:border-0  md:p-0 ">Noticias</a>
         </li>
         <li>
-            <a href="#" class="block py-2 px-3 text-gray-900 hover:text-[#FFB81A] rounded md:border-0  md:p-0 ">Galeria</a>
+            <a href="#" class="block py-2 px-3 text-gray-900 hover:text-[#FFB81A] rounded md:border-0  md:p-0 ">Obras</a>
         </li>
         <li>
-            <a href="/tramites" class="block py-2 px-3 text-gray-900 hover:text-[#FFB81A] rounded md:border-0  md:p-0 ">Tramites</a>
+            <div class="group relative cursor-pointer">
+
+                <div class="flex items-center">
+                    <a class="menu-hover " onClick="">
+                        Tramites
+                    </a>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="h-3 w-3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </span>
+                </div>
+        
+                <div
+                    class="invisible absolute z-50 rounded-sm flex w-48 flex-col bg-white py-2 text-gray-800 shadow-xl group-hover:visible">
+        
+                    <a class="ml-1 block border-b border-gray-100  font-semibold  hover:text-[#FFB81A] ">
+                        Requisitos para empadronarse
+                    </a>
+        
+                    <a class="ml-1 block border-b border-gray-100 font-semibold  hover:text-[#FFB81A] ">
+                        Transferencia de vivienda
+                    </a>
+        
+                    <a class="ml-1 block border-b border-gray-100  font-semibold  hover:text-[#FFB81A]">
+                        Guia de tramites
+                    </a>
+        
+                </div>
+            </div>
         </li>
         <li>
             <a href="/contacto" class="block py-2 px-3 text-gray-900 hover:text-[#FFB81A] rounded md:border-0  md:p-0 ">Contacto</a>
         </li>
+        
         </ul>
     </div>
     </div>

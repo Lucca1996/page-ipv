@@ -19,10 +19,15 @@
   <div class="max-w-full max-h-dvh flex bg-gray-300">
     <img class=" w-2/3" src="<%= noticia.coverimage[0].url %>" alt="" />
     <div>
-    <h2 class="ml-12 mt-5 mb-44 font-semibold">Noticia principal</h2>
+      <div>
+    <h2 class="ml-12 mt-5  font-semibold">Noticia principal</h2>
+    <h2 class="ml-12 mt-5 mb-28 font-light"><%= noticia.date.toLocaleDateString() %></h2>
+  </div>
     <div class="flex">
       <img class="w-5 h-5 md:w-6 md:h-6 ml-12" src="https://res.cloudinary.com/dncvxpgj1/image/upload/w_200/v1714390010/IPV/ayblnmi0v8xb8dfidajz.png" alt="">
+      <% if(noticia.videos) {%>
       <img class="w-5 h-5 md:w-6 md:h-6 ml-2" src="https://res.cloudinary.com/dncvxpgj1/image/upload/w_200/v1714390010/IPV/cudtnnibjvxzi1nppoed.png" alt="">
+      <% } %>
     </div>
     <h2 class="ml-12 mt-5 mb-5 text-4xl font-bold"><%= noticia.category %></h2>
     <p class="ml-12 text-xl whitespace-pre-wrap"><%= noticia.subtitle %></p>
@@ -35,13 +40,13 @@
 <section class="mb-48">
 <div class="bg-[#FFB81A] flex pt-24">
   <div class="ml-80">
-<p class=" font-medium text-xl whitespace-pre-wrap"><%= noticia.content %></p>
+<p class=" font-medium max-w-4xl text-xl whitespace-pre-wrap"><%= noticia.content %></p>
 
-  <h2 class=" mt-32 mb-8 font-bold text-7xl">Galería</h2>
-  <div class="flex mb-14 font-bold text-xl">
-    <a class="mr-20 hover:underline underline underline-offset-[17px]" active href="">Fotografías</a>
-    <a class="hover:underline underline-offset-[17px]" href="">Videos</a>
-  </div>
+<h2 class="mt-32 mb-8 font-bold text-7xl">Galería</h2>
+<div class="flex mb-14 font-bold text-xl">
+  <a class="mr-20 hover:underline active:underline underline-offset-[17px] cursor-pointer" id="botonFotos">Fotografías</a>
+  <a class="hover:underline active:underline underline-offset-[17px] cursor-pointer" id="botonVideos">Videos</a>
+</div>
 </div>
 <div class="text-white ml-32 font-bold">
   <p class="text-3xl mb-5">Total de viviendas</p>
@@ -50,13 +55,63 @@
   <p class="text-7xl">40</p>
 </div>
 </div>
-<div  class="grid grid-cols-5 mb-10">
+<div class="grid grid-cols-5 mb-10" id="contenedorFotos">
   <% noticia.images.forEach(function(img, i) {%>
-            <div class="image">
-              <img src="<%= img.url %>" alt="" class="h-96 w-96 object-cover cursor-pointer hover:scale-110 transition-transform duration-500 ease-in-out" />
-            </div>
+    <div class="image">
+      <img src="<%= img.url %>" alt="" class="h-96 w-96 object-cover cursor-pointer hover:scale-110 transition-transform duration-500 ease-in-out" />
+    </div>
   <% }) %>
-          </div>
+</div>
+<div class="aspect-video mt-8 hidden" id="contenedorVideos">
+  <% if(!noticia.videos) {%>
+    <h2 class="mt-24 ml-24 font-bold text-6xl">Aun no se han cargado videos en esta noticia...</h2>
+  <% }%>
+  <iframe
+  class="w-3/5 h-2/5 mx-auto"
+  src="<%= noticia.videos %>"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+</div>
+<script>
+  const botonFotos = document.getElementById('botonFotos');
+  const botonVideos = document.getElementById('botonVideos');
+  const contenedorFotos = document.getElementById('contenedorFotos');
+  const contenedorVideos = document.getElementById('contenedorVideos');
+
+  // Iniciar con el botón "Fotografías" activo y su contenedor visible
+  botonFotos.classList.add('active');
+  contenedorFotos.style.display = 'grid';
+
+  botonFotos.addEventListener('click', function() {
+    // Evitar cambios si ya está activo
+    if (!botonFotos.classList.contains('active')) {
+      botonFotos.classList.add('active');
+      botonVideos.classList.remove('active');
+      botonVideos.style.textDecoration = '';
+      botonFotos.style.textDecoration = 'underline';
+      contenedorFotos.style.display = 'grid';
+      contenedorVideos.style.display = 'none';
+    }
+  });
+
+  if(botonFotos.classList.contains('active')) {
+    botonFotos.style.textDecoration = 'underline';
+  }
+
+  botonVideos.addEventListener('click', function() {
+    // Evitar cambios si ya está activo
+    if (!botonVideos.classList.contains('active')) {
+      botonFotos.classList.remove('active');
+      botonFotos.style.textDecoration = '';
+      botonVideos.style.textDecoration = 'underline';
+      botonVideos.classList.add('active');
+      contenedorFotos.style.display = 'none';
+      contenedorVideos.style.display = 'block';
+    }
+  });
+</script>
           
 </section>
 <style>

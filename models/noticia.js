@@ -14,6 +14,7 @@ const opts = { toJSON: { virtuals: true } }
 
 const NoticiaSchema = new Schema({
     title: String,
+    videos: String,
     images: [ImageSchema],
     coverimage: [ImageSchema],
     geometry: {
@@ -30,7 +31,7 @@ const NoticiaSchema = new Schema({
     content: String,
     subtitle: String,
     category: String,
-    date: String,
+    date: Date,
     location: String,
     author: {
         type: Schema.Types.ObjectId,

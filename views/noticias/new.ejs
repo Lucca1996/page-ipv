@@ -60,6 +60,22 @@
         " id="image" name="image"  multiple required>
             </label>
         </div>
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium" for="video">Agregar link de video</label>
+            <input class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="video" name="noticia[videos]">  
+        </div>
+        <div class="mb-5">
+            <input class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 hidden" type="date" id="myDate" name="noticia[date]">  
+            <script>
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //Enero es 0!
+                var yyyy = today.getFullYear();
+                
+                today = yyyy + '-' + mm + '-' + dd;
+                document.getElementById("myDate").value = today;
+                </script>
+        </div>
         <div class="max-w-sm mb-5">
             <label class="block mb-2 text-sm font-medium" for="category">Seleccione una categoria</label>
             <select id="category" name="noticia[category]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

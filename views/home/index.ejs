@@ -2,5 +2,79 @@
 
 <img class="w-full mx-auto" src="https://ipvtuc.gob.ar/web/wp-content/uploads/2024/01/imagen-principal-1.png" alt="">
 
+<style>
+    .image-container:hover .hover-image {
+  display: block; /* Muestra la imagen al hacer hover */
+}
+    .image-container:hover .original-image {
+  display: none; /* Oculta la imagen al hacer hover */
+}
+</style>
 
-<h1>Home</h1>
+<div class="max-w-screen-xl flex-wrap items-end justify-between mx-auto mt-32 mb-20 p-4">
+<h2 class="font-extrabold text-5xl mb-20 text-center">Trámites y Servicios</h2>
+<div class="container flex justify-center">
+    <a href="http://119.8.76.209:8080/Boletas/com.boleta.homeipv">
+    <div class=" image-container text-center mr-10 ">
+            <img src="https://ipvtuc.gob.ar/web/wp-content/uploads/2024/02/imprimir-1.png" alt="Imagen original" class="original-image mx-auto w-16 mb-3">
+            <img src="https://res.cloudinary.com/dncvxpgj1/image/upload/v1714608206/IPV/znowdejsvnz9dowisbxs.png" alt="Imagen al hacer hover" class="hover-image mx-auto w-16 mb-3 hidden">
+<h3 class="font-extrabold text-2xl mb-3 text-center">Imprimir Boleta </h3>
+<p>Descargue e Imprima<br>
+    su Boleta mensual</p>
+    </div>
+</a>
+<a href="https://ipvtuc.gob.ar/inscripcion/registracion.php">
+    <div class=" image-container text-center ml-10 ">
+            <img src="https://res.cloudinary.com/dncvxpgj1/image/upload/v1714608205/IPV/zgxgvnbz0gqrgvowkaer.png" alt="Imagen original" class="original-image mx-auto w-16 mb-3">
+            <img src="https://res.cloudinary.com/dncvxpgj1/image/upload/v1714608206/IPV/hfmf82lfuwlj4mbgi3n2.png" alt="Imagen al hacer hover" class="hover-image mx-auto w-16 mb-3 hidden">
+<h3 class="font-extrabold text-2xl mb-3 text-center">Inscripción</h3>
+<p>Inscripción y Actualización<br>
+    de Datos</p>
+    </div>
+</a>
+</div>
+<% for(let noticia of noticias) { %>
+<div class="max-w-screen-xl flex-wrap items-end justify-between mx-auto mt-32 mb-28 p-4">
+    <h5 class="mb-10 text-5xl font-bold tracking-tight text-gray-900">Noticias</h5>
+    <div class="max-w-full max-h-dvh flex bg-gray-300">
+      <img class=" w-2/3" src="<%= noticia.coverimage[0].url %>" alt="" />
+      <div class="w-80">
+        <h2 class="ml-12 mt-5  font-semibold">Noticia principal</h2>
+        <h2 class="ml-12 mt-5 mb-28 font-light"><%= noticia.date.toLocaleDateString() %></h2>
+      <div class="flex">
+        <img class="w-5 h-5 md:w-6 md:h-6 ml-12" src="https://res.cloudinary.com/dncvxpgj1/image/upload/w_200/v1714390010/IPV/ayblnmi0v8xb8dfidajz.png" alt="">
+       
+        <img class="w-5 h-5 md:w-6 md:h-6 ml-2" src="https://res.cloudinary.com/dncvxpgj1/image/upload/w_200/v1714390010/IPV/cudtnnibjvxzi1nppoed.png" alt="">
+       
+      </div>
+      <h2 class="ml-12 mt-5 mb-5 text-2xl font-bold"><%= noticia.title %></h2>
+      <p class="ml-12 text-xl whitespace-pre-wrap"><%= noticia.subtitle %></p>
+      <a href="#" class="inline-flex font-black text-xl items-center px-24 whitespace-nowrap py-5 mb-5 ml-12 bg-[#FFB81A]  hover:bg-[#ff891a]">
+        Visitar Noticia
+        </a>
+    </div>
+    </div>
+  </div>
+  <%}  %>
+  
+  <h5 class="mb-10 text-5xl font-bold tracking-tight text-gray-900">Programas Especiales</h5>
+
+</div>
+<div class="flex mb-24">
+    <div  class="w-1/2">
+<img  src="https://img.lagaceta.com.ar/fotos/notas/2017/05/22/730743_20170522134924.jpg?_ga=2.248161607.1129732.1495557899-1522169883.1476926707" alt="">
+<div class="bg-[#ffce63] pt-5 pb-11 pr-14 ">
+    <h2 class="font-bold text-xl ml-52">PROMAT</h2>
+    <p class="ml-52 mt-2">El martes 7 de noviembre se despidió quien venía siendo 
+        hasta el momento la Sub-Interventora del Instituto.</p>
+</div>
+    </div>
+    <div class="w-1/2">
+<img  src="https://img.lagaceta.com.ar/fotos/notas/2017/05/22/730743_20170522134924.jpg?_ga=2.248161607.1129732.1495557899-1522169883.1476926707" alt="">
+<div class="bg-[#FFB81A] pt-5 pb-11 pr-14 ">
+    <h2 class="font-bold text-xl ml-52">PROMEBA</h2>
+    <p class="ml-52 mt-2">El martes 7 de noviembre se despidió quien venía siendo 
+        hasta el momento la Sub-Interventora del Instituto.</p>
+</div>
+</div>
+</div>
