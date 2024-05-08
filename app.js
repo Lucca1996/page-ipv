@@ -93,8 +93,11 @@ app.get('/institucional/autoridades', (req, res) => {
 app.get('/institucional/organigrama', (req, res) => {
     res.render('institucional/organigrama')
 })
-app.get('/tramites', (req, res) => {
-    res.render('tramites/index')
+app.get('/tramites/requisitos', (req, res) => {
+    res.render('tramites/requisitos')
+})
+app.get('/tramites/transferencia', (req, res) => {
+    res.render('tramites/transferencia')
 })
 
 

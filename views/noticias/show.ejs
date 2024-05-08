@@ -16,12 +16,12 @@
 
 <div class="max-w-screen-xl flex-wrap items-end justify-between mx-auto mt-32 mb-20 p-4">
   <h5 class="mb-10 text-5xl font-bold tracking-tight text-gray-900"><%= noticia.title %></h5>
-  <div class="max-w-full max-h-dvh flex bg-gray-300">
-    <img class=" w-2/3" src="<%= noticia.coverimage[0].url %>" alt="" />
-    <div>
+  <div class="max-w-full md:max-h-dvh md:flex bg-gray-300">
+    <img class=" md:w-2/3" src="<%= noticia.coverimage[0].url %>" alt="" />
+    <div class="md:w-80 pb-8 md:pb-0">
       <div>
     <h2 class="ml-12 mt-5  font-semibold">Noticia principal</h2>
-    <h2 class="ml-12 mt-5 mb-28 font-light"><%= noticia.date.toLocaleDateString() %></h2>
+    <h2 class="ml-12 mt-5 md:mb-28 mb-5 font-light"><%= noticia.date.toLocaleDateString() %></h2>
   </div>
     <div class="flex">
       <img class="w-5 h-5 md:w-6 md:h-6 ml-12" src="https://res.cloudinary.com/dncvxpgj1/image/upload/w_200/v1714390010/IPV/ayblnmi0v8xb8dfidajz.png" alt="">
@@ -30,44 +30,44 @@
       <% } %>
     </div>
     <h2 class="ml-12 mt-5 mb-5 text-4xl font-bold"><%= noticia.category %></h2>
-    <p class="ml-12 text-xl whitespace-pre-wrap"><%= noticia.subtitle %></p>
+    <p class="ml-12 text-xl mr-5 md:mr-0 whitespace-pre-wrap"><%= noticia.subtitle %></p>
   </div>
   </div>
   <div id="map" ></div>
 
 </div>
 
-<section class="mb-48">
-<div class="bg-[#FFB81A] flex pt-24">
-  <div class="ml-80">
+<section class="">
+<div class="bg-[#FFB81A] md:flex pt-24">
+  <div class="md:ml-80 ml-5 mr-5 md:mr-0">
 <p class=" font-medium max-w-4xl text-xl whitespace-pre-wrap"><%= noticia.content %></p>
 
 <h2 class="mt-32 mb-8 font-bold text-7xl">Galería</h2>
 <div class="flex mb-14 font-bold text-xl">
-  <a class="mr-20 hover:underline active:underline underline-offset-[17px] cursor-pointer" id="botonFotos">Fotografías</a>
+  <a class="mr-20 hover:underline active:underline underline-offset-[17px] mb-10 md:mb-0 cursor-pointer" id="botonFotos">Fotografías</a>
   <a class="hover:underline active:underline underline-offset-[17px] cursor-pointer" id="botonVideos">Videos</a>
 </div>
 </div>
-<div class="text-white ml-32 font-bold">
+<div class="hidden md:block text-white ml-32 font-bold">
   <p class="text-3xl mb-5">Total de viviendas</p>
   <p class="text-7xl mb-12">140</p>
   <p class="text-3xl mb-5">Entregadas</p>
   <p class="text-7xl">40</p>
 </div>
 </div>
-<div class="grid grid-cols-5 mb-10" id="contenedorFotos">
+<div class="grid md:grid-cols-5 grid-cols-2 mb-28" id="contenedorFotos">
   <% noticia.images.forEach(function(img, i) {%>
     <div class="image">
-      <img src="<%= img.url %>" alt="" class="h-96 w-96 object-cover cursor-pointer hover:scale-110 transition-transform duration-500 ease-in-out" />
+      <img src="<%= img.url %>" alt="" class="md:h-96 w-96 object-cover cursor-pointer hover:scale-110 transition-transform duration-500 ease-in-out" />
     </div>
   <% }) %>
 </div>
 <div class="aspect-video mt-8 hidden" id="contenedorVideos">
   <% if(!noticia.videos) {%>
-    <h2 class="mt-24 ml-24 font-bold text-6xl">Aun no se han cargado videos en esta noticia...</h2>
+    <h2 class="md:mt-24 md:ml-24 font-bold md:text-6xl">Aun no se han cargado videos en esta noticia...</h2>
   <% }%>
   <iframe
-  class="w-3/5 h-2/5 mx-auto"
+  class="md:w-3/5 md:h-3/5 mx-auto"
   src="<%= noticia.videos %>"
   frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
