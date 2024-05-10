@@ -14,6 +14,15 @@
     </svg>
     </button>
 </div>
+<script>
+  
+  const closeButton = document.getElementById("close-button");
+closeButton.addEventListener("click", () => {
+const alertElement = document.getElementById("alert-border-3");
+alertElement.parentNode.removeChild(alertElement);
+});
+
+</script>
 <% } %>
 
 <% if(error && error.length) {%>
@@ -31,12 +40,14 @@
       </svg>
     </button>
 </div>
-<% } %>
-
 <script>
-    const closeButton = document.getElementById("close-button");
+  
+  const closeButton = document.getElementById("close-button");
 closeButton.addEventListener("click", () => {
 const alertElement = document.getElementById("alert-border-3");
 alertElement.parentNode.removeChild(alertElement);
 });
+
 </script>
+<% } %>
+

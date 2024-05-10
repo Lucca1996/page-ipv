@@ -1,6 +1,6 @@
 const { noticiaSchema } = require('./schemas.js');
-const ExpressError = require('./utils/ExpressError');
-const Noticia = require('./models/noticia');
+const ExpressError = require('./utils/ExpressError.js');
+const Noticia = require('./models/noticia.js');
 
 
 module.exports.storeReturnTo = (req, res, next) => {

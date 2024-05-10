@@ -10,7 +10,7 @@ module.exports.index = async (req, res) => {
 }
 
 module.exports.renderNewForm = (req, res) => {
-    res.render('noticias/new')
+    res.render('../views/noticias/show.ejs')
 }
 
 module.exports.createNoticia = async (req, res, next) => {
