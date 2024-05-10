@@ -36,9 +36,7 @@
     "passport-local-mongoose": "^8.0.0",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
-    "sanitize-html": "^2.13.0"
-  },
-  "devDependencies": {
+    "sanitize-html": "^2.13.0",
     "@babel/cli": "^7.24.5",
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
