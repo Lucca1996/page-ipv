@@ -37,7 +37,7 @@ db.once('open', () => {
 
 
 app.engine('ejs', ejsMate)
-app.set('views', path.join(__dirname, '../views'))
+app.set('views', path.join(__dirname, './views'))
 app.set('view engine', 'ejs')
 
 app.use(express.urlencoded({ extended: true }));
@@ -123,5 +123,5 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = "Something went wrong!";
-    res.status(statusCode).render("./errors/error", { err })
+    res.status(statusCode).render("./views/errors/error.ejs", { err })
 });
