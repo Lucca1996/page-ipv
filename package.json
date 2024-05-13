@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css",
-    "build": "babel src -d dist && cp -r src/views dist"
+    "build": "babel src -d dist && cp -r src/views dist",
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "",
