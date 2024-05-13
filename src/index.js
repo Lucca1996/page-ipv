@@ -21,10 +21,12 @@ const helmet = require('helmet')
 const Noticia = require('./models/noticia');
 const MongoDBStore = require('connect-mongo')(session);
 
-const dbUrl = 'mongodb://localhost:27017/ipv'
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/ipv'
 
-app.listen(3000, () => {
-    console.log('listening to port 3000')
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`listening to port ${port}`)
 })
 
 mongoose.connect(dbUrl)
